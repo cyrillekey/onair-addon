@@ -1,4 +1,5 @@
 {
+    "name": "onair",
     "buildpacks": [
         {
             "url": "heroku/nodejs"
