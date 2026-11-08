@@ -20,7 +20,7 @@ RUN npm ci --omit=dev && npm cache clean --force
 FROM base AS runner
 RUN apk add --no-cache libgcc libstdc++
 ENV NODE_ENV=production
-ENV PORT=4000
+ENV PORT=8080
 
 COPY --chown=node:node package.json package-lock.json ./
 COPY --from=prod-deps --chown=node:node /app/node_modules ./node_modules
@@ -31,5 +31,5 @@ COPY --from=builder --chown=node:node /app/src/templates ./dist/src/templates
 RUN touch .env && chown node:node /app .env
 
 USER node
-EXPOSE 4000
+EXPOSE 8080
 CMD ["node", "--enable-source-maps", "dist/src/server.js"]
