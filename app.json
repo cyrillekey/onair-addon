@@ -18,8 +18,8 @@
     },
     "formation": {
         "web": {
-            "quantity": 2,
-            "max_parallel": 2
+            "quantity": 1,
+            "max_parallel": 6
         },
         "worker": {
             "quantity": 1
