@@ -15,5 +15,14 @@
                 "attempts": 3
             }
         ]
+    },
+    "formation": {
+        "web": {
+            "quantity": 2,
+            "max_parallel": 2
+        },
+        "worker": {
+            "quantity": 1
+        }
     }
 }
