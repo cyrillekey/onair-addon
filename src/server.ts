@@ -62,7 +62,7 @@ const shutdown = closeWithGrace(
   },
 );
 
-fastify.addHook("onClose", async () => {
+fastify.addHook("onClose", () => {
   shutdown.uninstall();
 });
 
