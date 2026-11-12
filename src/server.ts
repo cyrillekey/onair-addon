@@ -1,6 +1,5 @@
 import "dotenv/config";
 import "temporal-polyfill/global";
-import Sentry from "@/utils/instrument";
 import Fastify from "fastify";
 import closeWithGrace from "close-with-grace";
 import app, { options } from "@/app";
@@ -65,7 +64,6 @@ const shutdown = closeWithGrace(
 
 fastify.addHook("onClose", async () => {
   shutdown.uninstall();
-  await Sentry.close(2_000);
 });
 
 async function start(): Promise<void> {
