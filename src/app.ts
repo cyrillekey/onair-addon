@@ -44,6 +44,7 @@ const app: FastifyPluginCallback<AppOptions> = (fastify, opts) => {
   fastify.register(fastifyStatic, {
     root: path.join(__dirname, "public"),
     prefix: "/public/",
+    maxAge: "1d",
   });
   fastify.register(scalarDocumentation, {
     routePrefix: "/api/documentation",
@@ -63,6 +64,11 @@ const app: FastifyPluginCallback<AppOptions> = (fastify, opts) => {
   void fastify.register(AutoLoad, {
     dir: join(__dirname, "plugins"),
     options: opts,
+  });
+
+  void fastify.addHook("onSend", (res, reply) => {
+    if (res.url.match(/^\/public\//))
+      reply.header("cache-control", "public, max-age=86400");
   });
 
   // This loads all plugins defined in routes
